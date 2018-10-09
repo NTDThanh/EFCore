@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore.Data", "EFCore.Data\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore.Domain", "EFCore.Domain\EFCore.Domain.csproj", "{9FF8DCDC-9524-4686-9119-AB6D8838D4BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore.Console", "EFCore.Console\EFCore.Console.csproj", "{762005F2-D327-49C1-899B-27AC26D911B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9FF8DCDC-9524-4686-9119-AB6D8838D4BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FF8DCDC-9524-4686-9119-AB6D8838D4BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FF8DCDC-9524-4686-9119-AB6D8838D4BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{762005F2-D327-49C1-899B-27AC26D911B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{762005F2-D327-49C1-899B-27AC26D911B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{762005F2-D327-49C1-899B-27AC26D911B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{762005F2-D327-49C1-899B-27AC26D911B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
