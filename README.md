@@ -1,6 +1,7 @@
 # EFCore
 For study entity framework core
 I. Initial solution:
+
   1.Create project EFCore.Data:
       - Project type: Class Library.
       - Target framework: .NET Standard 2.0.
