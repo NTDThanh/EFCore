@@ -23,6 +23,8 @@ I. Initial solution:
           
           + Microsoft.Extensions.Logging
           
+          + Microsoft.Extensions.Logging.Console
+          
       - Add reference to EFCore.Domain.
       
    2.Create project EFCore.Domain:
