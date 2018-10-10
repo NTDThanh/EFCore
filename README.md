@@ -21,6 +21,8 @@ I. Initial solution:
           
           + Microsoft.EntityFrameworkCore.SqlServer
           
+          + Microsoft.Extensions.Logging
+          
       - Add reference to EFCore.Domain.
       
    2.Create project EFCore.Domain:
