@@ -17,9 +17,11 @@ I. Initial solution:
           
           + Microsoft.EntityFrameworkCore.Design
           
-          + Microsoft.EntityFrameworkCore.Relational.Design
-          
           + Microsoft.EntityFrameworkCore.SqlServer
+          
+          + Microsoft.Extensions.Logging
+          
+          + Microsoft.Extensions.Logging.Console
           
       - Add reference to EFCore.Domain.
       
@@ -43,12 +45,20 @@ I. Initial solution:
       
           + Microsoft.EntityFrameworkCore
           
-          + Microsoft.EntityFrameworkCore.Tools
-          
           + Microsoft.EntityFrameworkCore.Design
           
-          + Microsoft.EntityFrameworkCore.Relational.Design
+          + Microsoft.EntityFrameworkCore.Relational
           
           + Microsoft.EntityFrameworkCore.SqlServer
           
+          + Microsoft.Extensions.Logging
+          
+          + Microsoft.Extensions.Logging.Console
+ II. Migration data
+ 
+    1. Config connection string in EFCore.Data > AddressContext.cs
+    
+    2. Turn on Package Manager Console with EFCore.Data is default project.
+    
+    3. User Add-Migration if change Entites, Update-Database to update physical DB.
       
