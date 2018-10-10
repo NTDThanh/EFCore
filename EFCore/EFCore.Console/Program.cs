@@ -95,5 +95,8 @@ namespace EFCore.Console
 
             cityRepo.Add(new List<City> { city });
         }
+        // [Todo] Eager loading
+        // [Todo] Explicit loading
+        // [Todo] Lazy loading
     }
 }
