@@ -54,5 +54,11 @@ I. Initial solution:
           + Microsoft.Extensions.Logging
           
           + Microsoft.Extensions.Logging.Console
-          
+ II. Migration data
+ 
+    1. Config connection string in EFCore.Data > AddressContext.cs
+    
+    2. Turn on Package Manager Console with EFCore.Data is default project.
+    
+    3. User Add-Migration if change Entites, Update-Database to update physical DB.
       
