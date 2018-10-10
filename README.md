@@ -17,8 +17,6 @@ I. Initial solution:
           
           + Microsoft.EntityFrameworkCore.Design
           
-          + Microsoft.EntityFrameworkCore.Relational.Design
-          
           + Microsoft.EntityFrameworkCore.SqlServer
           
           + Microsoft.Extensions.Logging
@@ -47,12 +45,14 @@ I. Initial solution:
       
           + Microsoft.EntityFrameworkCore
           
-          + Microsoft.EntityFrameworkCore.Tools
-          
           + Microsoft.EntityFrameworkCore.Design
           
-          + Microsoft.EntityFrameworkCore.Relational.Design
+          + Microsoft.EntityFrameworkCore.Relational
           
           + Microsoft.EntityFrameworkCore.SqlServer
+          
+          + Microsoft.Extensions.Logging
+          
+          + Microsoft.Extensions.Logging.Console
           
       
