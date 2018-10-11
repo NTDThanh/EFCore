@@ -22,7 +22,12 @@ namespace EFCore.Console
                 //SaveRelatedData();
                 //AddRelatedCity();
                 //ChangingRelationshipsCounty();
-                RemovingRelationships();
+                //RemovingRelationships();
+                //DeleteCity();
+                //EagerLoadingAddress();
+                //ProjectingRelated();
+                ExplicitLoadding();
+
             }
             catch (Exception ex)
             {
@@ -114,14 +119,48 @@ namespace EFCore.Console
             var countyRepo = new CountyRepository();
             countyRepo.ChangeRelationship();
         }
-        //[TAG] Removing relationships
+
+        // [TAG] Removing relationships
         static void RemovingRelationships()
         {
             var cityRepo = new CityRepository();
             cityRepo.RemoveRelationship();
         }
-        // [Todo] Eager loading
+
+        // [TAG] Delete cascade
+        static void DeleteCity()
+        {
+            var cityRepo = new CityRepository();
+            cityRepo.Delete(4);
+        }
+
+        // [TAG] Eager loading
+        static void EagerLoadingCity()
+        {
+            var cityRepo = new CityRepository();
+            var citys = cityRepo.EagerLoading();
+        }
+
+        // [TAG] Eager loading - Then include
+        static void EagerLoadingAddress()
+        {
+            var addRepo = new AddressRepository();
+            var address = addRepo.EagerLoadingWithThen();
+            var addressFull = addRepo.EagerLoadingWithInclude();
+        }
+
+        // [TAG] Projecting Related Data Base - Tham chiếu
+        static void ProjectingRelated()
+        {
+            var cityRepository = new CityRepository();
+            cityRepository.ProjectingRalatedCity();
+        }
         // [Todo] Explicit loading
+        static void ExplicitLoadding()
+        {
+            var cityRepository = new CityRepository();
+            cityRepository.ExplicitLoadding();
+        }
         // [Todo] Lazy loading
     }
 }

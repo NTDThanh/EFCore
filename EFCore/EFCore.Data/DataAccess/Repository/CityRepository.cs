@@ -31,7 +31,7 @@ namespace EFCore.Data.DataAccess.Repository
             }
         }
 
-        public City GetCountyById(int cityCode)
+        public City GetCityById(int cityCode)
         {
             City city;
             using (var db = new AddressContext())
@@ -41,11 +41,11 @@ namespace EFCore.Data.DataAccess.Repository
             return city;
         }
 
-        public void Delete(City city)
+        public void Delete(int cityCode)
         {
-            if (city == null) return;
             using (var db = new AddressContext())
             {
+                var city = db.CityInfo.Include(y => y.County).First(x => x.CityCode.Equals(cityCode));
                 db.Remove(city);
                 db.SaveChanges();
             }
@@ -106,6 +106,49 @@ namespace EFCore.Data.DataAccess.Repository
 
                 city.County.Remove(county);
                 db.SaveChanges();
+            }
+        }
+
+        public List<City> EagerLoading()
+        {
+            using (var db = new AddressContext())
+            {
+                var citys = db.CityInfo
+                    //.Include(x => x.County.Where(x => x.Equals.Equals...))
+                    .Include(x => x.County)
+                    .ToList();
+                return citys;
+            }
+        }
+
+        public void ProjectingRalatedCity()
+        {
+            using (var db = new AddressContext())
+            {
+                var citys = db.CityInfo
+                    .Select(x => new
+                    {
+                        x.FullName,
+                        County = x.County
+                            .Where(county => county.FullName.Equals("Thanh Trì"))
+                            .ToList(),
+                        x.CityCode,
+
+                    })
+                    .ToList();
+            }
+        }
+
+        public void ExplicitLoadding()
+        {
+            using (var db = new AddressContext())
+            {
+                var citys = db.CityInfo
+                    .Single(x => x.CityCode == 1);
+
+                db.Entry(citys)
+                    .Collection(b => b.County)
+                    .Load();
             }
         }
     }
