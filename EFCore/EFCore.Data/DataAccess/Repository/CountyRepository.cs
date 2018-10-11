@@ -94,5 +94,17 @@ namespace EFCore.Data.DataAccess.Repository
                 return db.Countys.ToArray();
             }
         }
+
+        public void ChangeRelationship()
+        {
+            using (var db = new AddressContext())
+            {
+                var county = db.Countys.Single(x => x.FullName.Equals("Thanh Trì"));
+                var city = db.CityInfo.Single(x => x.CityCode == 2);
+
+                county.City = city;
+                db.SaveChanges();
+            }
+        }
     }
 }

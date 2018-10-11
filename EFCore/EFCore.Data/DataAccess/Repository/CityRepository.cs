@@ -1,4 +1,5 @@
 ﻿using EFCore.Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +72,41 @@ namespace EFCore.Data.DataAccess.Repository
                 db.SaveChanges();
             }
 
+        }
+
+        public void AddRelatedEntity()
+        {
+            using (var db = new AddressContext())
+            {
+                var county = new County
+                {
+                    FullName = "Thanh Trì",
+                    IsDelete = false,
+                };
+
+                var city = db.CityInfo
+                    .Include(x => x.County)
+                    .First();
+
+                city.County.Add(county);
+                db.SaveChanges();
+            }
+        }
+
+        public void RemoveRelationship()
+        {
+            using (var db = new AddressContext())
+            {
+                var city = db.CityInfo
+                    //.Include(x => x.County.Where(x => x.Equals.Equals...))
+                    .Include(x => x.County)
+                    .First(x => x.CityCode == 2);
+
+                var county = city.County.First(countys => countys.FullName.Equals("Thanh Trì"));
+
+                city.County.Remove(county);
+                db.SaveChanges();
+            }
         }
     }
 }

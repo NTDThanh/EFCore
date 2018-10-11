@@ -19,7 +19,10 @@ namespace EFCore.Console
                 //AddSimpleCity();
                 // TAG[Save Related Data]
                 //AddSimpleCounty();
-                SaveRelatedData();
+                //SaveRelatedData();
+                //AddRelatedCity();
+                //ChangingRelationshipsCounty();
+                RemovingRelationships();
             }
             catch (Exception ex)
             {
@@ -52,7 +55,8 @@ namespace EFCore.Console
             var cityRepo = new CityRepository();
             cityRepo.Add(new List<City> { city });
         }
-        // TAG[Save Related Data]
+
+        // [TAG]Save Related Data
         static void AddSimpleCounty()
         {
             var city = new City
@@ -74,7 +78,8 @@ namespace EFCore.Console
             var countyRepo = new CountyRepository();
             countyRepo.Add(new List<County> { county });
         }
-        // TAG[Save Related Data]
+
+        // [TAG]Save Related Data
         static void SaveRelatedData()
         {
             var countys = new List<County> {
@@ -94,6 +99,26 @@ namespace EFCore.Console
             var cityRepo = new CityRepository();
 
             cityRepo.Add(new List<City> { city });
+        }
+
+        // [TAG] Adding a related entity
+        static void AddRelatedCity()
+        {
+            var cityRepo = new CityRepository();
+            cityRepo.AddRelatedEntity();
+        }
+
+        // [TAG] Changing relationships
+        static void ChangingRelationshipsCounty()
+        {
+            var countyRepo = new CountyRepository();
+            countyRepo.ChangeRelationship();
+        }
+        //[TAG] Removing relationships
+        static void RemovingRelationships()
+        {
+            var cityRepo = new CityRepository();
+            cityRepo.RemoveRelationship();
         }
         // [Todo] Eager loading
         // [Todo] Explicit loading
