@@ -23,6 +23,7 @@ namespace EFCore.Data
             optionsBuilder
                 .UseLoggerFactory(MyConsoleLoggerFactory)
                 .EnableSensitiveDataLogging(true)
+                .UseLazyLoadingProxies()
                 .UseSqlServer(@"Data Source=192.168.6.235\SQLEXPRESS;Initial Catalog=EFCore; Persist Security Info=True;User ID=efcoreadmin;Password=efcorepass");
         }
 

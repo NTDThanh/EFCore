@@ -8,6 +8,7 @@ namespace EFCore.Domain
 {
     public class County
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? CountyId { get; set; }
@@ -15,10 +16,11 @@ namespace EFCore.Domain
         public string NameFormated { get; set; }
         public string FullName { get; set; }
         public string AliasName { get; set; }
-        public City City { get; set; }
+        public virtual City City { get; set; }
         public DateTime? UpdateAt { get; set; }
         [Timestamp]
         public byte[] Timestamp { get; set; }
+        public virtual ICollection<Address> Address { get; set; }
         public bool IsDelete { get; set; }
     }
 }

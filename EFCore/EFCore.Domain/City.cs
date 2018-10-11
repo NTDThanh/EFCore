@@ -13,7 +13,7 @@ namespace EFCore.Domain
         [ConcurrencyCheck]
         public string NameFormated { get; set; }
         public string FullName { get; set; }
-        public List<County> County { get; set; }
+        public virtual List<County> County { get; set; }
         public DateTime? UpdateAt { get; set; }
         [Timestamp]
         public byte[] Timestamp { get; set; }

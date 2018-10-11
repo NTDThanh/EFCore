@@ -26,7 +26,8 @@ namespace EFCore.Console
                 //DeleteCity();
                 //EagerLoadingAddress();
                 //ProjectingRelated();
-                ExplicitLoadding();
+                //ExplicitLoadding();
+                LazyLoading();
 
             }
             catch (Exception ex)
@@ -162,5 +163,11 @@ namespace EFCore.Console
             cityRepository.ExplicitLoadding();
         }
         // [Todo] Lazy loading
+        static void LazyLoading()
+        {
+            var countyRepo = new CountyRepository();
+            countyRepo.LazyLoadingAddress();
+        }
+
     }
 }

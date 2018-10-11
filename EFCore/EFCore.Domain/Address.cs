@@ -12,8 +12,8 @@ namespace EFCore.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AddressNo { get; set; }
         public string AddressName { get; set; }
-        public County County { get; set; }
-        public City City { get; set; }
+        public virtual County County { get; set; }
+        public virtual City City { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? UpdateAt { get; set; }
         [Timestamp]
