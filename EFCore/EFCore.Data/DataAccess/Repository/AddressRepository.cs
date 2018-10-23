@@ -21,15 +21,15 @@ namespace EFCore.Data.DataAccess.Repository
 
         }
 
-        public List<Address> EagerLoadingWithInclude()
-        {
-            using (var db = new AddressContext())
-            {
-                return db.Address
-                    .Include(x => x.City)
-                    .Include(x => x.County)
-                    .ToList();
-            }
-        }
+        //public List<Address> EagerLoadingWithInclude()
+        //{
+        //    using (var db = new AddressContext())
+        //    {
+        //        return db.Address
+        //            .Include(x => x.City)
+        //            .Include(x => x.County)
+        //            .ToList();
+        //    }
+        //}
     }
 }

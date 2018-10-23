@@ -147,7 +147,7 @@ namespace EFCore.Console
         {
             var addRepo = new AddressRepository();
             var address = addRepo.EagerLoadingWithThen();
-            var addressFull = addRepo.EagerLoadingWithInclude();
+            //var addressFull = addRepo.EagerLoadingWithInclude();
         }
 
         // [TAG] Projecting Related Data Base - Tham chiếu
@@ -166,7 +166,7 @@ namespace EFCore.Console
         static void LazyLoading()
         {
             var countyRepo = new CountyRepository();
-            countyRepo.LazyLoadingAddress();
+            //countyRepo.LazyLoadingAddress();
         }
 
     }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EFCore.Data.Migrations
 {
-    public partial class First : Migration
+    public partial class firstmove : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,11 +16,35 @@ namespace EFCore.Data.Migrations
                     NameFormated = table.Column<string>(nullable: true),
                     FullName = table.Column<string>(nullable: true),
                     UpdateAt = table.Column<DateTime>(nullable: true),
-                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true)
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CityInfo", x => x.CityCode);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Address",
+                columns: table => new
+                {
+                    AddressNo = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AddressName = table.Column<string>(nullable: true),
+                    CityCode = table.Column<int>(nullable: true),
+                    UpdateAt = table.Column<DateTime>(nullable: true),
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    IsDelete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Address", x => x.AddressNo);
+                    table.ForeignKey(
+                        name: "FK_Address_CityInfo_CityCode",
+                        column: x => x.CityCode,
+                        principalTable: "CityInfo",
+                        principalColumn: "CityCode",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -34,7 +58,8 @@ namespace EFCore.Data.Migrations
                     AliasName = table.Column<string>(nullable: true),
                     CityCode = table.Column<int>(nullable: true),
                     UpdateAt = table.Column<DateTime>(nullable: true),
-                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true)
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,32 +73,27 @@ namespace EFCore.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "CountyAddress",
                 columns: table => new
                 {
+                    CountyId = table.Column<int>(nullable: false),
                     AddressNo = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AddressName = table.Column<string>(nullable: true),
-                    CountyId = table.Column<int>(nullable: true),
-                    CityCode = table.Column<int>(nullable: true),
-                    CreateAt = table.Column<DateTime>(nullable: true),
-                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.AddressNo);
+                    table.PrimaryKey("PK_CountyAddress", x => new { x.CountyId, x.AddressNo });
                     table.ForeignKey(
-                        name: "FK_Address_CityInfo_CityCode",
-                        column: x => x.CityCode,
-                        principalTable: "CityInfo",
-                        principalColumn: "CityCode",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_CountyAddress_Address_AddressNo",
+                        column: x => x.AddressNo,
+                        principalTable: "Address",
+                        principalColumn: "AddressNo",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Address_Countys_CountyId",
+                        name: "FK_CountyAddress_Countys_CountyId",
                         column: x => x.CountyId,
                         principalTable: "Countys",
                         principalColumn: "CountyId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -82,9 +102,9 @@ namespace EFCore.Data.Migrations
                 column: "CityCode");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address_CountyId",
-                table: "Address",
-                column: "CountyId");
+                name: "IX_CountyAddress_AddressNo",
+                table: "CountyAddress",
+                column: "AddressNo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Countys_CityCode",
@@ -94,6 +114,9 @@ namespace EFCore.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CountyAddress");
+
             migrationBuilder.DropTable(
                 name: "Address");
 

@@ -107,19 +107,19 @@ namespace EFCore.Data.DataAccess.Repository
             }
         }
 
-        public void LazyLoadingAddress()
-        {
-            using (var db = new AddressContext())
-            {
-                var countys = db.Countys.Where(x => x.CountyId < 10).ToList();
-                foreach (var county in countys)
-                {
-                    if (county.CountyId == 3)
-                    {
-                        var address = county.Address;
-                    }
-                }
-            }
-        }
+        //public void LazyLoadingAddress()
+        //{
+        //    using (var db = new AddressContext())
+        //    {
+        //        var countys = db.Countys.Where(x => x.CountyId < 10).ToList();
+        //        foreach (var county in countys)
+        //        {
+        //            if (county.CountyId == 3)
+        //            {
+        //                var address = county.Address;
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

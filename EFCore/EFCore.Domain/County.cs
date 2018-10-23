@@ -20,7 +20,9 @@ namespace EFCore.Domain
         public DateTime? UpdateAt { get; set; }
         [Timestamp]
         public byte[] Timestamp { get; set; }
-        public virtual ICollection<Address> Address { get; set; }
+        //public virtual ICollection<Address> Address { get; set; }
+        // For create many-to-many relatedship via intermediate table CountyAddress
+        public virtual ICollection<CountyAddress> CountyAddresses { get; set; }
         public bool IsDelete { get; set; }
     }
 }

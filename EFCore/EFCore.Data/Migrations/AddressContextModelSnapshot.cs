@@ -29,22 +29,17 @@ namespace EFCore.Data.Migrations
 
                     b.Property<int?>("CityCode");
 
-                    b.Property<int?>("CountyId");
-
                     b.Property<bool>("IsDelete");
 
                     b.Property<byte[]>("Timestamp")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<DateTime?>("UpdateAt")
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<DateTime?>("UpdateAt");
 
                     b.HasKey("AddressNo");
 
                     b.HasIndex("CityCode");
-
-                    b.HasIndex("CountyId");
 
                     b.ToTable("Address");
                 });
@@ -101,15 +96,24 @@ namespace EFCore.Data.Migrations
                     b.ToTable("Countys");
                 });
 
+            modelBuilder.Entity("EFCore.Domain.CountyAddress", b =>
+                {
+                    b.Property<int>("CountyId");
+
+                    b.Property<int>("AddressNo");
+
+                    b.HasKey("CountyId", "AddressNo");
+
+                    b.HasIndex("AddressNo");
+
+                    b.ToTable("CountyAddress");
+                });
+
             modelBuilder.Entity("EFCore.Domain.Address", b =>
                 {
                     b.HasOne("EFCore.Domain.City", "City")
                         .WithMany()
                         .HasForeignKey("CityCode");
-
-                    b.HasOne("EFCore.Domain.County", "County")
-                        .WithMany("Address")
-                        .HasForeignKey("CountyId");
                 });
 
             modelBuilder.Entity("EFCore.Domain.County", b =>
@@ -117,6 +121,19 @@ namespace EFCore.Data.Migrations
                     b.HasOne("EFCore.Domain.City", "City")
                         .WithMany("County")
                         .HasForeignKey("CityCode");
+                });
+
+            modelBuilder.Entity("EFCore.Domain.CountyAddress", b =>
+                {
+                    b.HasOne("EFCore.Domain.Address", "Address")
+                        .WithMany("CountyAddress")
+                        .HasForeignKey("AddressNo")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EFCore.Domain.County", "County")
+                        .WithMany("CountyAddresses")
+                        .HasForeignKey("CountyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

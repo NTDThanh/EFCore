@@ -29,7 +29,9 @@ namespace EFCore.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<CountyAddress>()
+                .HasKey(s => new { s.CountyId, s.AddressNo });
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
